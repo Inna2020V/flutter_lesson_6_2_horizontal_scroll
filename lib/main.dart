@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:flutter/rendering.dart';
 
 void main() {
@@ -9,6 +8,7 @@ void main() {
     appBar: AppBar(
       title: const Text("Butterflies"),
       centerTitle: true,
+      backgroundColor: Colors.indigo,
     ),
   )));
 }
@@ -57,24 +57,44 @@ class _ButterfliesListState extends State<ButterfliesList> {
                       _selectedIndex = index;
                     });
                   },
-                  title: Text(_butterflies[index],
-                      style: const TextStyle(fontSize: 24)),
+                  title: Container(
+                    height: 70,
+                    width: double.infinity,
+                    color: Colors.indigo[50],
+                    margin: const EdgeInsets.symmetric(vertical: 20),
+                    padding: const EdgeInsets.all(8),
+                    child: Text(_butterflies[index],
+                        textAlign: TextAlign.center,
+                        style: const TextStyle(
+                            fontSize: 22, color: Colors.indigoAccent)),
+                  ),
                   selected: index == _selectedIndex),
             ),
           ),
         ),
-        Text(
-            _selectedIndex == -1
-                ? "Выбери бабочку"
-                : " ${_butterflies[_selectedIndex]}",
-            textAlign: TextAlign.center,
-            style: const TextStyle(fontSize: 30)),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Icon(
+              Icons.brightness_5_outlined,
+            ),
+            Text(
+                _selectedIndex == -1
+                    ? "Выбери бабочку"
+                    : " ${_butterflies[_selectedIndex]}",
+                textAlign: TextAlign.center,
+                style: const TextStyle(fontSize: 30)),
+          ],
+        ),
+        const SizedBox(
+          height: 20,
+        ),
         Container(
-            height: 500.0,
-            padding: const EdgeInsets.all(20),
-            child: Text(
-                _selectedIndex == -1 ? '' : _description[_selectedIndex],
-                style: const TextStyle(fontSize: 20, color: Colors.blue))),
+          height: 400.0,
+          padding: const EdgeInsets.symmetric(horizontal: 30),
+          child: Text(_selectedIndex == -1 ? '' : _description[_selectedIndex],
+              style: const TextStyle(fontSize: 20, color: Colors.indigo)),
+        ),
       ],
     );
   }
